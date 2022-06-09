@@ -31,13 +31,9 @@ int main(int ac, char **av)
 
 
 /**
-
  * configInit - initialize member values for config struct
-
  * @build: input build
-
  * Return: build with initialized members
-
  */
 
 config *configInit(config *build)
