@@ -162,13 +162,9 @@ void forkAndExecute(config *build)
 
 	{
 		wait(&status);
-
 		if (WIFEXITED(status))
-
 			build->errorStatus = WEXITSTATUS(status);
-
 		freeArgsAndBuffer(build);
-
 		freeArgs(build->envList);
 	}
 }
