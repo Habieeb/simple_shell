@@ -7,7 +7,6 @@
  * @new_size: size of new ptr
  * Return: reallocated ptr
  */
-
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 {
@@ -18,7 +17,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (ptr);
 
 	if (!ptr)
-
 	{
 		free(ptr);
 
@@ -52,13 +50,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 		exit(errno);
 	}
-
 	_memcpy(res, ptr, old_size);
 
 	free(ptr);
 
 	return (res);
-
 }
 
 /**
@@ -72,7 +68,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 char *_memcpy(char *dest, char *src, unsigned int n)
 
 {
-
 	char *ptr = dest;
 
 	while (n--)
