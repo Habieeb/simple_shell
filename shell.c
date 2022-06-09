@@ -48,8 +48,6 @@ void checkAndGetLine(config *build)
 
 	char *ptr, *ptr2;
 
-
-
 	build->args = NULL;
 
 	build->envList = NULL;
@@ -77,8 +75,6 @@ void checkAndGetLine(config *build)
 			exit(build->errorStatus);
 
 		exit(EXIT_SUCCESS);
-
-
 
 	}
 
@@ -108,8 +104,6 @@ void stripComments(char *str)
 	register int i = 0;
 
 	_Bool notFirst = false;
-
-
 
 	while (str[i])
 
@@ -149,14 +143,9 @@ void stripComments(char *str)
 
 }
 
-
-
 /**
-
  * forkAndExecute - fork current build and execute processes
-
  * @build: input build
-
  */
 
 void forkAndExecute(config *build)
@@ -166,8 +155,6 @@ void forkAndExecute(config *build)
 	int status;
 
 	pid_t f1 = fork();
-
-
 
 	convertLLtoArr(build);
 
@@ -227,14 +214,9 @@ void forkAndExecute(config *build)
 
 }
 
-
-
 /**
-
- * convertLLtoArr - convert linked list to array
-
+ * convertLLtoArr - convert linked list to arra
  * @build: input build
-
  */
 
 void convertLLtoArr(config *build)
@@ -249,8 +231,6 @@ void convertLLtoArr(config *build)
 
 	linked_l *tmp = build->env;
 
-
-
 	count = list_len(build->env);
 
 	envList = malloc(sizeof(char *) * (count + 1));
@@ -262,7 +242,6 @@ void convertLLtoArr(config *build)
 		perror("Malloc failed\n");
 
 		exit(1);
-
 	}
 
 	while (tmp)
@@ -274,7 +253,6 @@ void convertLLtoArr(config *build)
 		tmp = tmp->next;
 
 		i++;
-
 	}
 
 	envList[i] = NULL;
