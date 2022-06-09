@@ -8,11 +8,9 @@
 void shell(config *build)
 
 {
-
 	while (true)
 
 	{
-
 		checkAndGetLine(build);
 
 		if (splitString(build) == false)
@@ -26,11 +24,8 @@ void shell(config *build)
 		checkPath(build);
 
 		forkAndExecute(build);
-
 	}
-
 }
-
 
 /**
  * checkAndGetLine - check stdin and retrieves next line; handles
@@ -41,7 +36,6 @@ void shell(config *build)
 void checkAndGetLine(config *build)
 
 {
-
 	register int len;
 
 	size_t bufferSize = 0;
@@ -63,7 +57,6 @@ void checkAndGetLine(config *build)
 	if (len == EOF)
 
 	{
-
 		freeMembers(build);
 
 		if (isatty(STDIN_FILENO))
@@ -75,9 +68,7 @@ void checkAndGetLine(config *build)
 			exit(build->errorStatus);
 
 		exit(EXIT_SUCCESS);
-
 	}
-
 	ptr = _strchr(build->buffer, '\n');
 
 	ptr2 = _strchr(build->buffer, '\t');
@@ -90,7 +81,6 @@ void checkAndGetLine(config *build)
 
 }
 
-
 /**
  * stripComments - remove comments from input string
  * @str: input string
@@ -100,7 +90,6 @@ void checkAndGetLine(config *build)
 void stripComments(char *str)
 
 {
-
 	register int i = 0;
 
 	_Bool notFirst = false;
@@ -108,37 +97,28 @@ void stripComments(char *str)
 	while (str[i])
 
 	{
-
 		if (i == 0 && str[i] == '#')
 
 		{
-
 			insertNullByte(str, i);
 
 			return;
-
 		}
 
 		if (notFirst)
 
 		{
-
 			if (str[i] == '#' && str[i - 1] == ' ')
 
 			{
-
 				insertNullByte(str, i);
 
 				return;
-
 			}
-
 		}
 
 		i++;
-
 		notFirst = true;
-
 	}
 
 }
@@ -151,7 +131,6 @@ void stripComments(char *str)
 void forkAndExecute(config *build)
 
 {
-
 	int status;
 
 	pid_t f1 = fork();
@@ -169,17 +148,14 @@ void forkAndExecute(config *build)
 		freeArgs(build->envList);
 
 		exit(1);
-
 	}
 
 	if (f1 == 0)
 
 	{
-
 		if (execve(build->fullPath, build->args, build->envList) == -1)
 
 		{
-
 			errorHandler(build);
 
 			freeMembers(build);
@@ -193,13 +169,11 @@ void forkAndExecute(config *build)
 			if (errno == EACCES)
 
 				exit(126);
-
 		}
 
 	} else
 
 	{
-
 		wait(&status);
 
 		if (WIFEXITED(status))
@@ -209,9 +183,7 @@ void forkAndExecute(config *build)
 		freeArgsAndBuffer(build);
 
 		freeArgs(build->envList);
-
 	}
-
 }
 
 /**
@@ -222,7 +194,6 @@ void forkAndExecute(config *build)
 void convertLLtoArr(config *build)
 
 {
-
 	register int i = 0;
 
 	size_t count = 0;
@@ -238,20 +209,14 @@ void convertLLtoArr(config *build)
 	if (!envList)
 
 	{
-
 		perror("Malloc failed\n");
 
 		exit(1);
 	}
-
 	while (tmp)
-
 	{
-
 		envList[i] = _strdup(tmp->string);
-
 		tmp = tmp->next;
-
 		i++;
 	}
 
