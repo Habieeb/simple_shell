@@ -70,15 +70,12 @@ void checkAndGetLine(config *build)
 		exit(EXIT_SUCCESS);
 	}
 	ptr = _strchr(build->buffer, '\n');
-
 	ptr2 = _strchr(build->buffer, '\t');
-
 	if (ptr || ptr2)
 
 		insertNullByte(build->buffer, len - 1);
 
 	stripComments(build->buffer);
-
 }
 
 /**
@@ -86,16 +83,13 @@ void checkAndGetLine(config *build)
  * @str: input string
  * Return: length of remaining string
  */
-
 void stripComments(char *str)
-
 {
 	register int i = 0;
 
 	_Bool notFirst = false;
 
 	while (str[i])
-
 	{
 		if (i == 0 && str[i] == '#')
 
@@ -120,7 +114,6 @@ void stripComments(char *str)
 		i++;
 		notFirst = true;
 	}
-
 }
 
 /**
@@ -129,7 +122,6 @@ void stripComments(char *str)
  */
 
 void forkAndExecute(config *build)
-
 {
 	int status;
 
@@ -138,9 +130,7 @@ void forkAndExecute(config *build)
 	convertLLtoArr(build);
 
 	if (f1 == -1)
-
 	{
-
 		perror("error\n");
 
 		freeMembers(build);
@@ -149,9 +139,7 @@ void forkAndExecute(config *build)
 
 		exit(1);
 	}
-
 	if (f1 == 0)
-
 	{
 		if (execve(build->fullPath, build->args, build->envList) == -1)
 
@@ -170,7 +158,6 @@ void forkAndExecute(config *build)
 
 				exit(126);
 		}
-
 	} else
 
 	{
@@ -190,7 +177,6 @@ void forkAndExecute(config *build)
  * convertLLtoArr - convert linked list to arra
  * @build: input build
  */
-
 void convertLLtoArr(config *build)
 
 {
@@ -207,7 +193,6 @@ void convertLLtoArr(config *build)
 	envList = malloc(sizeof(char *) * (count + 1));
 
 	if (!envList)
-
 	{
 		perror("Malloc failed\n");
 
@@ -223,5 +208,4 @@ void convertLLtoArr(config *build)
 	envList[i] = NULL;
 
 	build->envList = envList;
-
 }
