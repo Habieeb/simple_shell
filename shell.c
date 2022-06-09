@@ -132,30 +132,20 @@ void forkAndExecute(config *build)
 	if (f1 == -1)
 	{
 		perror("error\n");
-
 		freeMembers(build);
-
 		freeArgs(build->envList);
-
 		exit(1);
 	}
 	if (f1 == 0)
 	{
 		if (execve(build->fullPath, build->args, build->envList) == -1)
-
 		{
 			errorHandler(build);
-
 			freeMembers(build);
-
 			freeArgs(build->envList);
-
 			if (errno == ENOENT)
-
 				exit(127);
-
 			if (errno == EACCES)
-
 				exit(126);
 		}
 	} else
