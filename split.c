@@ -72,11 +72,7 @@ unsigned int countWords(char *str)
 		{
 
 			wordOn = true;
-
-			words++;
-  
-           	}
-
+			words++; 
 		str++;
 	}
 
